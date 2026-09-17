@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>INSAF REXINE HOUSE</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #070707;
+            color: #fff;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            padding: 30px 15px;
+            background: linear-gradient(135deg, #050505, #29200a, #050505);
+            border-bottom: 2px solid #d4af37;
+        }
+
+        header h1 {
+            color: #d4af37;
+            font-size: 42px;
+            letter-spacing: 3px;
+        }
+
+        header p {
+            color: #aaa;
+            margin-top: 8px;
+        }
+
+        /* OWNER */
+        .owner {
+            max-width: 1100px;
+            width: 94%;
+            margin: 30px auto;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            background: #111;
+            border: 1px solid #444;
+            border-radius: 20px;
+        }
+
+        .owner-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #d4af37;
+            background: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .owner-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .owner-placeholder {
+            font-size: 65px;
+            color: #777;
+        }
+
+        .owner h2 {
+            color: #d4af37;
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .owner p {
+            color: #aaa;
+            line-height: 1.7;
+        }
+
+        /* MAIN */
+        .container {
+            width: 94%;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        /* PANEL */
+        .panel {
+            background: #111;
+            border: 1px solid #444;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .panel h2 {
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        label {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            background: #080808;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #d4af37;
+        }
+
+        textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .buttons {
+            margin-top: 18px;
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            border: 0;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .save {
+            background: #d4af37;
+            color: #111;
+        }
+
+        .save:hover {
+            background: #fff;
+        }
+
+        .cancel {
+            display: none;
+            background: #333;
+            color: white;
+        }
+
+        /* SEARCH */
+        .menu-title {
+            text-align: center;
+            color: #d4af37;
+            font-size: 34px;
+            margin: 30px 0 20px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .controls input {
+            flex: 1;
+        }
+
+        .controls select {
+            max-width: 250px;
+        }
+
+        /* PRODUCTS */
+        .products {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fill, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #111;
+            border: 1px solid #3c3c3c;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: .25s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: #d4af37;
+        }
+
+        .card-image {
+            height: 220px;
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .no-image {
+            font-size: 55px;
+            color: #555;
+        }
+
+        .card-body {
+            padding: 17px;
+        }
+
+        .category {
+            color: #d4af37;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .card h3 {
+            font-size: 19px;
+            margin-bottom: 10px;
+        }
+
+        .info {
+            color: #aaa;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .price {
+            color: #d4af37;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 14px 0;
+        }
+
+        .edit {
+            width: 100%;
+            background: #d4af37;
+            color: #111;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 50px;
+            color: #777;
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: 50px;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #333;
+            background: #050505;
+        }
+
+        footer h3 {
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            color: #888;
+            line-height: 1.8;
+        }
+
+        /* MOBILE */
+        @media(max-width:800px) {
+
+            header h1 {
+                font-size: 28px;
+            }
+
+            .owner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .owner h2 {
+                font-size: 28px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .controls select {
+                max-width: none;
+            }
+
+            .products {
+                grid-template-columns:
+                    repeat(auto-fill, minmax(170px, 1fr));
+            }
+
+            .card-image {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <h1>INSAF REXINE HOUSE</h1>
+        <p>QUALITY • VARIETY • TRUST</p>
+    </header>
+
+
+    <!-- OWNER -->
+    <section class="owner">
+
+        <div class="owner-photo">
+
+            <img id="ownerImg" style="display:none;">
+
+            <div id="ownerPlaceholder" class="owner-placeholder">
+                👤
+            </div>
+
+        </div>
+
+        <div>
+
+            <h2>HAJI KHAN GUL</h2>
+
+            <p>
+                SHOP OWNER • INSAF REXINE HOUSE
+            </p>
+
+            <p>
+                📍 Shop No. 7, Noor Plaza, Qadarabad,
+                Gulbahar No. 4, Haji Camp
+            </p>
+
+            <p>
+                📞 0307-5946040
+            </p>
+
+            <br>
+
+            <label>Change Owner Picture</label>
+
+            <input type="file" id="ownerPhoto" accept="image/*">
+
+        </div>
+
+    </section>
+
+
+    <div class="container">
+
+        <!-- ADD PRODUCT -->
+        <section class="panel">
+
+            <h2 id="formTitle">
+                Add New Menu Card
+            </h2>
+
+            <div class="form-grid">
+
+                <!-- IMAGE -->
+                <div class="field">
+
+                    <label>Product Picture</label>
+
+                    <input type="file" id="productImage" accept="image/*">
+
+                </div>
+
+
+                <!-- NAME -->
+                <div class="field">
+
+                    <label>Product Name</label>
+
+                    <input type="text" id="productName" placeholder="Example: Japanese Rexine Black">
+
+                </div>
+
+
+                <!-- PRICE -->
+                <div class="field">
+
+                    <label>Price</label>
+
+                    <input type="text" id="productPrice" placeholder="Enter your price">
+
+                </div>
+
+
+                <!-- CATEGORY -->
+                <div class="field">
+
+                    <label>Category</label>
+
+                    <select id="category">
+
+                        <option>Rexine</option>
+                        <option>Mats</option>
+                        <option>Plywood</option>
+                        <option>Clothes</option>
+                        <option>Sheet</option>
+                        <option>Foam</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- FOAM SIZE -->
+                <div class="field">
+
+                    <label>Foam Size / Type</label>
+
+                    <select id="foamType">
+
+                        <option value="">
+                            Select if Foam
+                        </option>
+
+                        <option>1 mm Foam</option>
+                        <option>2 mm Foam</option>
+                        <option>3 mm Foam</option>
+                        <option>4 mm Foam</option>
+                        <option>5 mm Foam</option>
+                        <option>6 mm Foam</option>
+                        <option>8 mm Foam</option>
+                        <option>10 mm Foam</option>
+                        <option>12 mm Foam</option>
+                        <option>15 mm Foam</option>
+                        <option>20 mm Foam</option>
+                        <option>25 mm Foam</option>
+                        <option>1 inch Foam</option>
+                        <option>2 inch Foam</option>
+                        <option>3 inch Foam</option>
+                        <option>4 inch Foam</option>
+                        <option>5 inch Foam</option>
+                        <option>6 inch Foam</option>
+                        <option>Other Foam</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- QUANTITY -->
+                <div class="field">
+
+                    <label>Quantity / Gaz</label>
+
+                    <input type="text" id="quantity" placeholder="Example: 5 Gaz">
+
+                </div>
+
+            </div>
+
+
+            <br>
+
+
+            <!-- DESCRIPTION -->
+            <div class="field">
+
+                <label>Product Information</label>
+
+                <textarea id="description" placeholder="Example: Japanese Rexine, Premium Quality..."></textarea>
+
+            </div>
+
+
+            <div class="buttons">
+
+                <button class="save" onclick="saveProduct()">
+                    💾 Save Menu Card
+                </button>
+
+                <button class="cancel" id="cancelBtn" onclick="cancelEdit()">
+                    Cancel
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- MENU -->
+        <h2 class="menu-title">
+            PRODUCT MENU
+        </h2>
+
+
+        <div class="controls">
+
+            <input type="text" id="search" placeholder="🔎 Search product..." oninput="displayProducts()">
+
+            <select id="filter" onchange="displayProducts()">
+
+                <option>All</option>
+                <option>Rexine</option>
+                <option>Mats</option>
+                <option>Plywood</option>
+                <option>Clothes</option>
+                <option>Sheet</option>
+                <option>Foam</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="products" id="products">
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <h3>INSAF REXINE HOUSE</h3>
+
+        <p>
+            Owner: HAJI KHAN GUL
+        </p>
+
+        <p>
+            Shop No. 7, Noor Plaza, Qadarabad,
+            Gulbahar No. 4, Haji Camp
+        </p>
+
+        <p>
+            📞 0307-5946040
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        /* ==========================================
+           DATABASE
+        ========================================== */
+
+        let db;
+        let editID = null;
+
+        const request =
+            indexedDB.open(
+                "InsafRexineHouseDB",
+                1
+            );
+
+
+        request.onupgradeneeded = function (e) {
+
+            db = e.target.result;
+
+            if (!db.objectStoreNames.contains("products")) {
+
+                db.createObjectStore(
+                    "products",
+                    {
+                        keyPath: "id",
+                        autoIncrement: true
+                    }
+                );
+
+            }
+
+            if (!db.objectStoreNames.contains("settings")) {
+
+                db.createObjectStore(
+                    "settings",
+                    {
+                        keyPath: "id"
+                    }
+                );
+
+            }
+        };
+
+
+        request.onsuccess = function (e) {
+
+            db = e.target.result;
+
+            displayProducts();
+            loadOwner();
+
+        };
+
+
+        /* ==========================================
+           IMAGE
+        ========================================== */
+
+        function getImage(file) {
+
+            return new Promise((resolve, reject) => {
+
+                if (!file) {
+
+                    resolve("");
+
+                    return;
+                }
+
+                const reader =
+                    new FileReader();
+
+                reader.onload = () => {
+
+                    resolve(reader.result);
+
+                };
+
+                reader.onerror = reject;
+
+                reader.readAsDataURL(file);
+
+            });
+
+        }
+
+
+        /* ==========================================
+           OWNER IMAGE
+        ========================================== */
+
+        document
+            .getElementById("ownerPhoto")
+            .addEventListener(
+                "change",
+                async function () {
+
+                    const file = this.files[0];
+
+                    if (!file) return;
+
+                    const image =
+                        await getImage(file);
+
+
+                    const transaction =
+                        db.transaction(
+                            "settings",
+                            "readwrite"
+                        );
+
+
+                    transaction
+                        .objectStore("settings")
+                        .put({
+
+                            id: "owner",
+                            image: image
+
+                        });
+
+
+                    transaction.oncomplete =
+                        function () {
+
+                            showOwner(image);
+
+                        };
+
+                }
+            );
+
+
+        function showOwner(image) {
+
+            const img =
+                document.getElementById(
+                    "ownerImg"
+                );
+
+            const placeholder =
+                document.getElementById(
+                    "ownerPlaceholder"
+                );
+
+            img.src = image;
+
+            img.style.display = "block";
+
+            placeholder.style.display =
+                "none";
+
+        }
+
+
+        function loadOwner() {
+
+            const transaction =
+                db.transaction(
+                    "settings",
+                    "readonly"
+                );
+
+            const request =
+                transaction
+                    .objectStore("settings")
+                    .get("owner");
+
+
+            request.onsuccess =
+                function () {
+
+                    if (
+                        request.result &&
+                        request.result.image
+                    ) {
+
+                        showOwner(
+                            request.result.image
+                        );
+
+                    }
+
+                };
+
+        }
+
+
+        /* ==========================================
+           SAVE PRODUCT
+        ========================================== */
+
+        async function saveProduct() {
+
+            const name =
+                document
+                    .getElementById("productName")
+                    .value.trim();
+
+
+            const price =
+                document
+                    .getElementById("productPrice")
+                    .value.trim();
+
+
+            const category =
+                document
+                    .getElementById("category")
+                    .value;
+
+
+            const foamType =
+                document
+                    .getElementById("foamType")
+                    .value;
+
+
+            const quantity =
+                document
+                    .getElementById("quantity")
+                    .value.trim();
+
+
+            const description =
+                document
+                    .getElementById("description")
+                    .value.trim();
+
+
+            const file =
+                document
+                    .getElementById("productImage")
+                    .files[0];
+
+
+            if (!name) {
+
+                alert(
+                    "Please enter Product Name."
+                );
+
+                return;
+            }
+
+
+            let image = "";
+
+
+            if (file) {
+
+                image =
+                    await getImage(file);
+
+            }
+
+
+            const transaction =
+                db.transaction(
+                    "products",
+                    "readwrite"
+                );
+
+
+            const store =
+                transaction
+                    .objectStore("products");
+
+
+            /* EDIT */
+
+            if (editID !== null) {
+
+                const get =
+                    store.get(editID);
+
+
+                get.onsuccess =
+                    function () {
+
+                        const old =
+                            get.result;
+
+
+                        store.put({
+
+                            id: editID,
+
+                            name: name,
+
+                            price: price,
+
+                            category: category,
+
+                            foamType: foamType,
+
+                            quantity: quantity,
+
+                            description: description,
+
+                            image:
+                                image ||
+                                old.image
+
+                        });
+
+                    };
+
+            }
+
+            /* NEW */
+
+            else {
+
+                store.add({
+
+                    name: name,
+
+                    price: price,
+
+                    category: category,
+
+                    foamType: foamType,
+
+                    quantity: quantity,
+
+                    description: description,
+
+                    image: image
+
+                });
+
+            }
+
+
+            transaction.oncomplete =
+                function () {
+
+                    resetForm();
+
+                    displayProducts();
+
+                };
+
+        }
+
+
+        /* ==========================================
+           DISPLAY
+        ========================================== */
+
+        function displayProducts() {
+
+            const container =
+                document.getElementById(
+                    "products"
+                );
+
+            container.innerHTML = "";
+
+
+            const search =
+                document
+                    .getElementById("search")
+                    .value
+                    .toLowerCase();
+
+
+            const filter =
+                document
+                    .getElementById("filter")
+                    .value;
+
+
+            const transaction =
+                db.transaction(
+                    "products",
+                    "readonly"
+                );
+
+
+            const request =
+                transaction
+                    .objectStore("products")
+                    .getAll();
+
+
+            request.onsuccess =
+                function () {
+
+                    let products =
+                        request.result;
+
+
+                    products =
+                        products.filter(
+                            p => {
+
+                                const text =
+
+                                    (
+                                        p.name +
+                                        " " +
+                                        p.category +
+                                        " " +
+                                        p.foamType +
+                                        " " +
+                                        p.description
+                                    )
+                                        .toLowerCase();
+
+
+                                const searchOK =
+                                    text.includes(search);
+
+
+                                const filterOK =
+
+                                    filter === "All" ||
+                                    p.category === filter;
+
+
+                                return (
+                                    searchOK &&
+                                    filterOK
+                                );
+
+                            }
+                        );
+
+
+                    if (products.length === 0) {
+
+                        container.innerHTML = `
+
+                <div class="empty">
+
+                    <h2>
+                        No Products Found
+                    </h2>
+
+                    <p>
+                        Add your first menu card above.
+                    </p>
+
+                </div>
+
+            `;
+
+                        return;
+                    }
+
+
+                    products.forEach(
+                        createCard
+                    );
+
+                };
+
+        }
+
+
+        /* ==========================================
+           CARD
+        ========================================== */
+
+        function createCard(product) {
+
+            const container =
+                document.getElementById(
+                    "products"
+                );
+
+
+            const card =
+                document.createElement("div");
+
+
+            card.className =
+                "card";
+
+
+            let imageHTML = "";
+
+
+            if (product.image) {
+
+                imageHTML = `
+
+            <div class="card-image">
+
+                <img
+                    src="${product.image}"
+                    alt="Product"
+                >
+
+            </div>
+
+        `;
+
+            }
+
+            else {
+
+                imageHTML = `
+
+            <div class="card-image">
+
+                <div class="no-image">
+                    🖼️
+                </div>
+
+            </div>
+
+        `;
+
+            }
+
+
+            let foamHTML = "";
+
+
+            if (product.foamType) {
+
+                foamHTML = `
+
+            <div class="info">
+
+                🧽 Foam:
+                ${escapeHTML(product.foamType)}
+
+            </div>
+
+        `;
+
+            }
+
+
+            card.innerHTML = `
+
+        ${imageHTML}
+
+        <div class="card-body">
+
+            <div class="category">
+
+                ${escapeHTML(
+                product.category
+            )}
+
+            </div>
+
+
+            <h3>
+
+                ${escapeHTML(
+                product.name
+            )}
+
+            </h3>
+
+
+            ${foamHTML}
+
+
+            <div class="info">
+
+                📏 Quantity:
+                ${escapeHTML(
+                product.quantity ||
+                "Not specified"
+            )}
+
+            </div>
+
+
+            <div class="info">
+
+                📝
+                ${escapeHTML(
+                product.description ||
+                "Quality product"
+            )}
+
+            </div>
+
+
+            <div class="price">
+
+                ${escapeHTML(
+                product.price ||
+                "Price on request"
+            )}
+
+            </div>
+
+
+            <button
+                class="edit"
+                onclick="editProduct(${product.id})">
+
+                ✏️ Edit Menu Card
+
+            </button>
+
+        </div>
+
+    `;
+
+
+            container.appendChild(card);
+
+        }
+
+
+        /* ==========================================
+           EDIT
+        ========================================== */
+
+        function editProduct(id) {
+
+            const transaction =
+                db.transaction(
+                    "products",
+                    "readonly"
+                );
+
+
+            const request =
+                transaction
+                    .objectStore("products")
+                    .get(id);
+
+
+            request.onsuccess =
+                function () {
+
+                    const p =
+                        request.result;
+
+
+                    editID = id;
+
+
+                    document
+                        .getElementById("productName")
+                        .value =
+                        p.name;
+
+
+                    document
+                        .getElementById("productPrice")
+                        .value =
+                        p.price;
+
+
+                    document
+                        .getElementById("category")
+                        .value =
+                        p.category;
+
+
+                    document
+                        .getElementById("foamType")
+                        .value =
+                        p.foamType || "";
+
+
+                    document
+                        .getElementById("quantity")
+                        .value =
+                        p.quantity;
+
+
+                    document
+                        .getElementById("description")
+                        .value =
+                        p.description;
+
+
+                    document
+                        .getElementById("formTitle")
+                        .textContent =
+                        "Edit Menu Card";
+
+
+                    document
+                        .getElementById("cancelBtn")
+                        .style.display =
+                        "block";
+
+
+                    window.scrollTo({
+
+                        top: 0,
+                        behavior: "smooth"
+
+                    });
+
+                };
+
+        }
+
+
+        /* ==========================================
+           CANCEL
+        ========================================== */
+
+        function cancelEdit() {
+
+            resetForm();
+
+        }
+
+
+        /* ==========================================
+           RESET
+        ========================================== */
+
+        function resetForm() {
+
+            editID = null;
+
+
+            document
+                .getElementById("productImage")
+                .value = "";
+
+
+            document
+                .getElementById("productName")
+                .value = "";
+
+
+            document
+                .getElementById("productPrice")
+                .value = "";
+
+
+            document
+                .getElementById("category")
+                .value =
+                "Rexine";
+
+
+            document
+                .getElementById("foamType")
+                .value = "";
+
+
+            document
+                .getElementById("quantity")
+                .value = "";
+
+
+            document
+                .getElementById("description")
+                .value = "";
+
+
+            document
+                .getElementById("formTitle")
+                .textContent =
+                "Add New Menu Card";
+
+
+            document
+                .getElementById("cancelBtn")
+                .style.display =
+                "none";
+
+        }
+
+
+        /* ==========================================
+           ENTER = SAVE
+        ========================================== */
+
+        document.addEventListener(
+            "keydown",
+            function (e) {
+
+                if (
+                    e.key === "Enter" &&
+                    e.target.tagName !== "TEXTAREA"
+                ) {
+
+                    e.preventDefault();
+
+                    saveProduct();
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           SAFE TEXT
+        ========================================== */
+
+        function escapeHTML(text) {
+
+            return String(text)
+
+                .replace(/&/g, "&amp;")
+
+                .replace(/</g, "&lt;")
+
+                .replace(/>/g, "&gt;")
+
+                .replace(/"/g, "&quot;")
+
+                .replace(/'/g, "&#039;");
+
+        }
+
+    </script>
+
+</body>
+
+</html>
